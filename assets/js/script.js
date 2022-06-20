@@ -96,6 +96,22 @@ var saveTasks = function() {
     localStorage.setItem("tasks", Json.stringify(tasks));
 }
 
+var loadTasks = function() {
+    var savedTasks = localStorage.getItem("tasks");
+
+    if (!savedTasks) {
+        return false;
+    }
+
+    savedTasks = JSON.parse(savedTasks);
+
+    // loop through savedTasks array
+    for (var i = 0; i < savedTasks.length; i++) {
+        // pass each task object into the 'createTaskEl()' function
+        createTaskEl(saveTasks[i]);
+    }
+}
+
 // increase task counter for next unique id
 taskIdCounter++;
 
